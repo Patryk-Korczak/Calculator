@@ -8,17 +8,18 @@
 
     <TextView
         android:id="@+id/authorInfo"
-        android:layout_width="384dp"
-        android:layout_height="269dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="388dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="173dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="174dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/textview"
         android:textColor="#2196F3"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonContact"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,14 +27,13 @@
         android:id="@+id/buttonContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="40dp"
         android:backgroundTint="#2196F3"
         android:text="@string/buttonContact"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/authorInfo" />
 
