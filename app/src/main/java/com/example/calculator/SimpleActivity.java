@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public class SimpleActivity extends AppCompatActivity {
 
@@ -39,7 +40,7 @@ public class SimpleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         textOne[0] = "";
         textTwo[0] = "";
@@ -293,14 +294,14 @@ public class SimpleActivity extends AppCompatActivity {
             if(sign[0].isEmpty()){
                 if(textOne[0].length() > 0) {
                     textOne[0] = textOne[0].substring(0, textOne[0].length() - 1);
-                    display.setText(display(textOne[0], sign[0], textTwo[0]));
                 }
             }else{
                 if(textTwo[0].length() > 0) {
-                    textTwo[0] = textTwo[0].substring(0, textOne[0].length() - 1);
-                    display.setText(display(textOne[0], sign[0], textTwo[0]));
+                    textTwo[0] = textTwo[0].substring(0, textTwo[0].length() - 1);
                 }
             }
+
+            display.setText(display(textOne[0], sign[0], textTwo[0]));
         });
 
 
