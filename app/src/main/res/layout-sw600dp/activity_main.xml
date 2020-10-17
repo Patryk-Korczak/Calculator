@@ -31,7 +31,6 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="22dp"
-        android:background="#FFFFFF"
         android:text="@string/simple"
         app:layout_constraintBottom_toTopOf="@+id/buttonAbout"
         app:layout_constraintEnd_toStartOf="@+id/buttonAdvanced"
