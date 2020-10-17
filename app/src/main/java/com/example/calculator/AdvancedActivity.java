@@ -51,37 +51,37 @@ public class AdvancedActivity extends AppCompatActivity {
         final Double[] numberTwo = new Double[1];
         final Double[] result = new Double[1];
 
-        TextView display = (TextView) findViewById(R.id.display);
+        TextView display = findViewById(R.id.display);
         display.setFreezesText(true);
         display.setText("");
-        Button button0 = (Button) findViewById(R.id.button0);
-        Button button1 = (Button) findViewById(R.id.button1);
-        Button button2 = (Button) findViewById(R.id.button2);
-        Button button3 = (Button) findViewById(R.id.button3);
-        Button button4 = (Button) findViewById(R.id.button4);
-        Button button5 = (Button) findViewById(R.id.button5);
-        Button button6 = (Button) findViewById(R.id.button6);
-        Button button7 = (Button) findViewById(R.id.button7);
-        Button button8 = (Button) findViewById(R.id.button8);
-        Button button9 = (Button) findViewById(R.id.button9);
-        Button buttonPlus = (Button) findViewById(R.id.buttonPlus);
-        Button buttonMinus = (Button) findViewById(R.id.buttonMinus);
-        Button buttonDivision = (Button) findViewById(R.id.buttonDivision);
-        Button buttonMultiply = (Button) findViewById(R.id.buttonMultiply);
-        Button buttonEquals = (Button) findViewById(R.id.buttonEquals);
-        Button buttonDot = (Button) findViewById(R.id.buttonDot);
-        Button buttonSign = (Button) findViewById(R.id.buttonSign);
-        Button buttonAC = (Button) findViewById(R.id.buttonAC);
-        Button buttonClear = (Button) findViewById(R.id.buttonClear);
-        Button buttonBack = (Button) findViewById(R.id.buttonBack);
-        Button buttonSqrt = (Button) findViewById(R.id.buttonSqrt);
-        Button buttonPowy = (Button) findViewById(R.id.buttonPowy);
-        Button buttonPow2 = (Button) findViewById(R.id.buttonPow2);
-        Button buttonLog = (Button) findViewById(R.id.buttonLog);
-        Button buttonSin = (Button) findViewById(R.id.buttonSin);
-        Button buttonCos = (Button) findViewById(R.id.buttonCos);
-        Button buttonTan = (Button) findViewById(R.id.buttonTan);
-        Button buttonLn = (Button) findViewById(R.id.buttonLn);
+        Button button0 = findViewById(R.id.button0);
+        Button button1 = findViewById(R.id.button1);
+        Button button2 = findViewById(R.id.button2);
+        Button button3 = findViewById(R.id.button3);
+        Button button4 = findViewById(R.id.button4);
+        Button button5 = findViewById(R.id.button5);
+        Button button6 = findViewById(R.id.button6);
+        Button button7 = findViewById(R.id.button7);
+        Button button8 = findViewById(R.id.button8);
+        Button button9 = findViewById(R.id.button9);
+        Button buttonPlus = findViewById(R.id.buttonPlus);
+        Button buttonMinus = findViewById(R.id.buttonMinus);
+        Button buttonDivision = findViewById(R.id.buttonDivision);
+        Button buttonMultiply = findViewById(R.id.buttonMultiply);
+        Button buttonEquals = findViewById(R.id.buttonEquals);
+        Button buttonDot = findViewById(R.id.buttonDot);
+        Button buttonSign = findViewById(R.id.buttonSign);
+        Button buttonAC = findViewById(R.id.buttonAC);
+        Button buttonClear = findViewById(R.id.buttonClear);
+        Button buttonBack = findViewById(R.id.buttonBack);
+        Button buttonSqrt = findViewById(R.id.buttonSqrt);
+        Button buttonPowY = findViewById(R.id.buttonPowy);
+        Button buttonPow2 = findViewById(R.id.buttonPow2);
+        Button buttonLog = findViewById(R.id.buttonLog);
+        Button buttonSin = findViewById(R.id.buttonSin);
+        Button buttonCos = findViewById(R.id.buttonCos);
+        Button buttonTan = findViewById(R.id.buttonTan);
+        Button buttonLn = findViewById(R.id.buttonLn);
 
 
 
@@ -425,7 +425,7 @@ public class AdvancedActivity extends AppCompatActivity {
                 }
             }
         });
-        buttonPowy.setOnClickListener(v -> {
+        buttonPowY.setOnClickListener(v -> {
             if(sign[0].isEmpty()){
                 sign[0] = "^";
                 display.setText(display(textOne[0], sign[0], textTwo[0]));

@@ -2,7 +2,6 @@ package com.example.calculator;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,10 +17,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addButtonListeners() {
-        Button buttonSimple = (Button) findViewById(R.id.buttonSimple);
-        Button buttonAdvanced = (Button) findViewById(R.id.buttonAdvanced);
-        Button buttonAbout = (Button) findViewById(R.id.buttonAbout);
-        Button buttonExit = (Button) findViewById(R.id.buttonExit);
+        Button buttonSimple = findViewById(R.id.buttonSimple);
+        Button buttonAdvanced = findViewById(R.id.buttonAdvanced);
+        Button buttonAbout = findViewById(R.id.buttonAbout);
+        Button buttonExit = findViewById(R.id.buttonExit);
 
         buttonSimple.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this , SimpleActivity.class);

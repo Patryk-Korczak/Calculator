@@ -18,14 +18,14 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        TextView authorInfo = (TextView) findViewById(R.id.authorInfo);
+        TextView authorInfo = findViewById(R.id.authorInfo);
         String author = "Patryk Korczak";
         String version = "1.0.1";
         String[] email = {"215767@edu.p.lodz.pl"};
         String info = "Created by: " + author + "\nVersion: " + version + "\nEmail: " + email[0];
         authorInfo.setText(info);
 
-        Button buttonContact = (Button) findViewById(R.id.buttonContact);
+        Button buttonContact = findViewById(R.id.buttonContact);
 
         buttonContact.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_SEND);
