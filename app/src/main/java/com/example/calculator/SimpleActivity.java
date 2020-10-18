@@ -14,26 +14,32 @@ import java.util.Objects;
 
 public class SimpleActivity extends AppCompatActivity {
 
-    final String[] textOne = new String[1];
-    final String[] textTwo = new String[1];
-    final String[] sign = new String[1];
+    String textOne = "";
+    String textTwo = "";
+    String sign = "";
+    String nextOperation = "";
+    Double numberOne;
+    Double numberTwo;
+    Double result;
 
 
     @Override
     protected void onRestoreInstanceState (Bundle savedInstanceState) {
         super.onRestoreInstanceState (savedInstanceState);
-        textOne[0] = savedInstanceState.getString("textOne", "");
-        textTwo[0] = savedInstanceState.getString("textTwo", "");
-        sign[0] = savedInstanceState.getString("sign", "");
-        display(textOne[0], sign[0], textTwo[0]);
+        textOne = savedInstanceState.getString("textOne", "");
+        textTwo = savedInstanceState.getString("textTwo", "");
+        sign = savedInstanceState.getString("sign", "");
+        nextOperation = savedInstanceState.getString("nextOperation", "");
+        display(textOne, sign, textTwo);
     }
 
     @Override
     protected void onSaveInstanceState (@NonNull Bundle outState) {
         super.onSaveInstanceState (outState);
-        outState.putString("textOne", textOne[0]);
-        outState.putString("textTwo", textTwo[0]);
-        outState.putString("sign", sign[0]);
+        outState.putString("textOne", textOne);
+        outState.putString("textTwo", textTwo);
+        outState.putString("sign", sign);
+        outState.putString("nextOperation", nextOperation);
     }
 
     @Override
@@ -42,12 +48,11 @@ public class SimpleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_simple);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        textOne[0] = "";
-        textTwo[0] = "";
-        sign[0] = "";
-        final Double[] numberOne = new Double[1];
-        final Double[] numberTwo = new Double[1];
-        final Double[] result = new Double[1];
+        textOne = "";
+        textTwo = "";
+        sign = "";
+        nextOperation = "";
+
 
         TextView display = findViewById(R.id.display);
         display.setFreezesText(true);
@@ -74,149 +79,157 @@ public class SimpleActivity extends AppCompatActivity {
         Button buttonBack = findViewById(R.id.buttonBack);
 
         button0.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                    textOne[0]+= "0";
+            if(sign.isEmpty()){
+                    textOne += "0";
             }else{
-                    textTwo[0]+= "0";
+                    textTwo+= "0";
             }
-            display.setText(display(textOne[0], sign[0], textTwo[0]));
+            display.setText(display(textOne, sign, textTwo));
         });
 
         button1.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                textOne[0]+= "1";
+            if(sign.isEmpty()){
+                textOne+= "1";
             }else{
-                textTwo[0]+= "1";
+                textTwo+= "1";
             }
-            display.setText(display(textOne[0], sign[0], textTwo[0]));
+            display.setText(display(textOne, sign, textTwo));
         });
         button2.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                textOne[0]+= "2";
+            if(sign.isEmpty()){
+                textOne+= "2";
             }else{
-                textTwo[0]+= "2";
+                textTwo+= "2";
             }
-            display.setText(display(textOne[0], sign[0], textTwo[0]));
+            display.setText(display(textOne, sign, textTwo));
         });
         button3.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                textOne[0]+= "3";
+            if(sign.isEmpty()){
+                textOne+= "3";
             }else{
-                textTwo[0]+= "3";
+                textTwo+= "3";
             }
-            display.setText(display(textOne[0], sign[0], textTwo[0]));
+            display.setText(display(textOne, sign, textTwo));
         });
         button4.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                textOne[0]+= "4";
+            if(sign.isEmpty()){
+                textOne+= "4";
             }else{
-                textTwo[0]+= "4";
+                textTwo+= "4";
             }
-            display.setText(display(textOne[0], sign[0], textTwo[0]));
+            display.setText(display(textOne, sign, textTwo));
         });
         button5.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                textOne[0]+= "5";
+            if(sign.isEmpty()){
+                textOne+= "5";
             }else{
-                textTwo[0]+= "5";
+                textTwo+= "5";
             }
-            display.setText(display(textOne[0], sign[0], textTwo[0]));
+            display.setText(display(textOne, sign, textTwo));
         });
         button6.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                textOne[0]+= "6";
+            if(sign.isEmpty()){
+                textOne+= "6";
             }else{
-                textTwo[0]+= "6";
+                textTwo+= "6";
             }
-            display.setText(display(textOne[0], sign[0], textTwo[0]));
+            display.setText(display(textOne, sign, textTwo));
         });
         button7.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                textOne[0]+= "7";
+            if(sign.isEmpty()){
+                textOne+= "7";
             }else{
-                textTwo[0]+= "7";
+                textTwo+= "7";
             }
-            display.setText(display(textOne[0], sign[0], textTwo[0]));
+            display.setText(display(textOne, sign, textTwo));
         });
         button8.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                textOne[0]+= "8";
+            if(sign.isEmpty()){
+                textOne+= "8";
             }else{
-                textTwo[0]+= "8";
+                textTwo+= "8";
             }
-            display.setText(display(textOne[0], sign[0], textTwo[0]));
+            display.setText(display(textOne, sign, textTwo));
         });
         button9.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                textOne[0]+= "9";
+            if(sign.isEmpty()){
+                textOne+= "9";
             }else{
-                textTwo[0]+= "9";
+                textTwo+= "9";
             }
-            display.setText(display(textOne[0], sign[0], textTwo[0]));
+            display.setText(display(textOne, sign, textTwo));
         });
         buttonPlus.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                sign[0] = "+";
-                display.setText(display(textOne[0], sign[0], textTwo[0]));
-            }else{
-                Toast.makeText(SimpleActivity.this, "Operation already chosen!", Toast.LENGTH_SHORT).show();
+            if(sign.isEmpty()){
+                sign = "+";
+                display.setText(display(textOne, sign, textTwo));
+            }else if(!(textTwo.isEmpty())){
+                nextOperation = "+";
+                buttonEquals.performClick();
             }
 
         });
         buttonMinus.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                sign[0] = "-";
-                display.setText(display(textOne[0], sign[0], textTwo[0]));
-            }else{
-                Toast.makeText(SimpleActivity.this, "Operation already chosen!", Toast.LENGTH_SHORT).show();
+            if(sign.isEmpty()){
+                sign = "-";
+                display.setText(display(textOne, sign, textTwo));
+            }else if(!(textTwo.isEmpty())){
+                nextOperation = "-";
+                buttonEquals.performClick();
             }
 
         });
         buttonDivision.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                sign[0] = "/";
-                display.setText(display(textOne[0], sign[0], textTwo[0]));
-            }else{
-                Toast.makeText(SimpleActivity.this, "Operation already chosen!", Toast.LENGTH_SHORT).show();
+            if(sign.isEmpty()){
+                sign = "/";
+                display.setText(display(textOne, sign, textTwo));
+            }else if(!(textTwo.isEmpty())){
+                nextOperation = "/";
+                buttonEquals.performClick();
             }
 
         });
         buttonMultiply.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                sign[0] = "*";
-                display.setText(display(textOne[0], sign[0], textTwo[0]));
-            }else{
-                Toast.makeText(SimpleActivity.this, "Operation already chosen!", Toast.LENGTH_SHORT).show();
+            if(sign.isEmpty()){
+                sign = "*";
+                display.setText(display(textOne, sign, textTwo));
+            }else if(!(textTwo.isEmpty())){
+                nextOperation = "*";
+                buttonEquals.performClick();
             }
 
         });
         buttonEquals.setOnClickListener(v -> {
-            if(!(textOne[0].isEmpty()) & !(textTwo[0].isEmpty())) {
+            if(!(textOne.isEmpty()) & !(textTwo.isEmpty())) {
                 try {
-                    numberOne[0] = Double.valueOf(textOne[0]);
-                    numberTwo[0] = Double.valueOf(textTwo[0]);
-                    if (sign[0].contains("+")) {
-                        result[0] = numberOne[0] + numberTwo[0];
+                    numberOne = Double.valueOf(textOne);
+                    numberTwo = Double.valueOf(textTwo);
+                    if (sign.contains("+")) {
+                        result = numberOne + numberTwo;
                     }
-                    if (sign[0].contains("-")) {
-                        result[0] = numberOne[0] - numberTwo[0];
+                    if (sign.contains("-")) {
+                        result = numberOne - numberTwo;
                     }
-                    if (sign[0].contains("*")) {
-                        result[0] = numberOne[0] * numberTwo[0];
+                    if (sign.contains("*")) {
+                        result = numberOne * numberTwo;
                     }
-                    if (sign[0].contains("/")) {
-                        if(numberTwo[0] == 0){
+                    if (sign.contains("/")) {
+                        if(numberTwo == 0){
                             throw new ArithmeticException("Do not divide by 0!");
                         }
-                        result[0] = numberOne[0] / numberTwo[0];
+                        result = numberOne / numberTwo;
                     }
                     NumberFormat nf  = new DecimalFormat("#.######");
-                    sign[0] = "";
-                    textTwo[0] = "";
-                    textOne[0] = nf.format(result[0]);
-                    display.setText(display(textOne[0], sign[0], textTwo[0]));
+                    sign = "";
+                    textTwo = "";
+                    textOne = nf.format(result);
+                    if(!(nextOperation.isEmpty())){
+                        sign = nextOperation;
+                        nextOperation = "";
+                    }
+                    display.setText(display(textOne, sign, textTwo));
                 } catch (Exception e) {
-                    if(numberTwo[0] == 0){
+                    if(numberTwo == 0){
                         Toast.makeText(SimpleActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(SimpleActivity.this, "Error while parsing values!", Toast.LENGTH_SHORT).show();
@@ -228,80 +241,80 @@ public class SimpleActivity extends AppCompatActivity {
 
         });
         buttonDot.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                if(textOne[0].length() == 0){
-                    textOne[0] = "0.";
+            if(sign.isEmpty()){
+                if(textOne.length() == 0){
+                    textOne = "0.";
                 }else{
-                    if(!(textOne[0].contains("."))) {
-                        textOne[0] += ".";
+                    if(!(textOne.contains("."))) {
+                        textOne += ".";
                     }
                 }
             }else{
-                if(textTwo[0].length() == 0){
-                    textTwo[0] = "0.";
+                if(textTwo.length() == 0){
+                    textTwo = "0.";
                 }else{
-                    if(!(textTwo[0].contains("."))) {
-                        textTwo[0] += ".";
+                    if(!(textTwo.contains("."))) {
+                        textTwo += ".";
                     }
                 }
             }
-            display.setText(display(textOne[0], sign[0], textTwo[0]));
+            display.setText(display(textOne, sign, textTwo));
         });
 
         buttonSign.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                if(textOne[0].length() > 0) {
-                    if(textOne[0].startsWith("-")){
-                        textOne[0] = textOne[0].substring(1);
+            if(sign.isEmpty()){
+                if(textOne.length() > 0) {
+                    if(textOne.startsWith("-")){
+                        textOne = textOne.substring(1);
                     }else {
-                        textOne[0] = "-" + textOne[0];
+                        textOne = "-" + textOne;
                     }
-                    display.setText(display(textOne[0], sign[0], textTwo[0]));
+                    display.setText(display(textOne, sign, textTwo));
                 }
             }else {
-                if (textTwo[0].length() > 0) {
-                    if (textTwo[0].startsWith("-")) {
-                        textTwo[0] = textTwo[0].substring(1);
+                if (textTwo.length() > 0) {
+                    if (textTwo.startsWith("-")) {
+                        textTwo = textTwo.substring(1);
                     } else {
-                        textTwo[0] = "-" + textTwo[0];
+                        textTwo = "-" + textTwo;
                     }
-                    display.setText(display(textOne[0], sign[0], textTwo[0]));
+                    display.setText(display(textOne, sign, textTwo));
                 }
             }
         });
         buttonAC.setOnClickListener(v -> {
-            textOne[0] = "";
-            sign[0] = "";
-            textTwo[0] = "";
-            display.setText(display(textOne[0], sign[0], textTwo[0]));
+            textOne = "";
+            sign = "";
+            textTwo = "";
+            display.setText(display(textOne, sign, textTwo));
         });
         buttonClear.setOnClickListener(v -> {
-            if(textOne[0].isEmpty()){
-                display.setText(display(textOne[0], sign[0], textTwo[0]));
-            }else if(sign[0].isEmpty()){
-                textOne[0] = "";
-                display.setText(display(textOne[0], sign[0], textTwo[0]));
-            }else if(textTwo[0].isEmpty()){
-                sign[0]= "";
-                display.setText(display(textOne[0], sign[0], textTwo[0]));
+            if(textOne.isEmpty()){
+                display.setText(display(textOne, sign, textTwo));
+            }else if(sign.isEmpty()){
+                textOne = "";
+                display.setText(display(textOne, sign, textTwo));
+            }else if(textTwo.isEmpty()){
+                sign= "";
+                display.setText(display(textOne, sign, textTwo));
             }else{
-                textTwo[0] = "";
-                display.setText(display(textOne[0], sign[0], textTwo[0]));
+                textTwo = "";
+                display.setText(display(textOne, sign, textTwo));
             }
 
         });
         buttonBack.setOnClickListener(v -> {
-            if(sign[0].isEmpty()){
-                if(textOne[0].length() > 0) {
-                    textOne[0] = textOne[0].substring(0, textOne[0].length() - 1);
+            if(sign.isEmpty()){
+                if(textOne.length() > 0) {
+                    textOne = textOne.substring(0, textOne.length() - 1);
                 }
             }else{
-                if(textTwo[0].length() > 0) {
-                    textTwo[0] = textTwo[0].substring(0, textTwo[0].length() - 1);
+                if(textTwo.length() > 0) {
+                    textTwo = textTwo.substring(0, textTwo.length() - 1);
                 }
             }
 
-            display.setText(display(textOne[0], sign[0], textTwo[0]));
+            display.setText(display(textOne, sign, textTwo));
         });
 
 

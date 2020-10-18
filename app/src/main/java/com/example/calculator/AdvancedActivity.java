@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Locale;
 import java.util.Objects;
 
 
@@ -19,6 +18,7 @@ public class AdvancedActivity extends AppCompatActivity {
     final String[] textOne = new String[1];
     final String[] textTwo = new String[1];
     final String[] sign = new String[1];
+    final String[] nextOperation = new String[1];
 
 
     @Override
@@ -27,6 +27,7 @@ public class AdvancedActivity extends AppCompatActivity {
         textOne[0] = savedInstanceState.getString("textOne", "");
         textTwo[0] = savedInstanceState.getString("textTwo", "");
         sign[0] = savedInstanceState.getString("sign", "");
+        nextOperation[0] = savedInstanceState.getString("nextOperation", "");
         display(textOne[0], sign[0], textTwo[0]);
     }
 
@@ -36,6 +37,7 @@ public class AdvancedActivity extends AppCompatActivity {
         outState.putString("textOne", textOne[0]);
         outState.putString("textTwo", textTwo[0]);
         outState.putString("sign", sign[0]);
+        outState.putString("nextOperation", nextOperation[0]);
     }
 
     @Override
@@ -47,6 +49,7 @@ public class AdvancedActivity extends AppCompatActivity {
         textOne[0] = "";
         textTwo[0] = "";
         sign[0] = "";
+        nextOperation[0] = "";
         final Double[] numberOne = new Double[1];
         final Double[] numberTwo = new Double[1];
         final Double[] result = new Double[1];
@@ -170,8 +173,9 @@ public class AdvancedActivity extends AppCompatActivity {
             if(sign[0].isEmpty()){
                 sign[0] = "+";
                 display.setText(display(textOne[0], sign[0], textTwo[0]));
-            }else{
-                Toast.makeText(AdvancedActivity.this, "Operation already chosen!", Toast.LENGTH_SHORT).show();
+            }else if(!(textTwo[0].isEmpty())){
+                nextOperation[0] = "+";
+                buttonEquals.performClick();
             }
 
         });
@@ -179,8 +183,9 @@ public class AdvancedActivity extends AppCompatActivity {
             if(sign[0].isEmpty()){
                 sign[0] = "-";
                 display.setText(display(textOne[0], sign[0], textTwo[0]));
-            }else{
-                Toast.makeText(AdvancedActivity.this, "Operation already chosen!", Toast.LENGTH_SHORT).show();
+            }else if(!(textTwo[0].isEmpty())){
+                nextOperation[0] = "-";
+                buttonEquals.performClick();
             }
 
         });
@@ -188,8 +193,9 @@ public class AdvancedActivity extends AppCompatActivity {
             if(sign[0].isEmpty()){
                 sign[0] = "/";
                 display.setText(display(textOne[0], sign[0], textTwo[0]));
-            }else{
-                Toast.makeText(AdvancedActivity.this, "Operation already chosen!", Toast.LENGTH_SHORT).show();
+            }else if(!(textTwo[0].isEmpty())){
+                nextOperation[0] = "/";
+                buttonEquals.performClick();
             }
 
         });
@@ -197,8 +203,9 @@ public class AdvancedActivity extends AppCompatActivity {
             if(sign[0].isEmpty()){
                 sign[0] = "*";
                 display.setText(display(textOne[0], sign[0], textTwo[0]));
-            }else{
-                Toast.makeText(AdvancedActivity.this, "Operation already chosen!", Toast.LENGTH_SHORT).show();
+            }else if(!(textTwo[0].isEmpty())){
+                nextOperation[0] = "*";
+                buttonEquals.performClick();
             }
 
         });
@@ -225,13 +232,18 @@ public class AdvancedActivity extends AppCompatActivity {
                     if(sign[0].contains("^")) {
                         result[0] = Math.pow(numberOne[0], numberTwo[0]);
                     }
-                    if(result[0].isNaN() | result[0].isInfinite()) {
-                        result[0] = 0.0;
-                    }
                     NumberFormat nf  = new DecimalFormat("#.######");
                     sign[0] = "";
                     textTwo[0] = "";
                     textOne[0] = nf.format(result[0]);
+                    if(result[0].isNaN() | result[0].isInfinite()) {
+                        Toast.makeText(AdvancedActivity.this, "Error, invalid equation.", Toast.LENGTH_SHORT).show();
+                        textOne[0] = "";
+                    }
+                    if(!(nextOperation[0].isEmpty())){
+                        sign[0] = nextOperation[0];
+                        nextOperation[0] = "";
+                    }
                     display.setText(display(textOne[0], sign[0], textTwo[0]));
                 } catch (Exception e) {
                     if(numberTwo[0] == 0){
@@ -325,10 +337,12 @@ public class AdvancedActivity extends AppCompatActivity {
                 try {
                     numberOne[0] = Double.valueOf(textOne[0]);
                     result[0] = Math.sqrt(numberOne[0]);
+                    NumberFormat nf  = new DecimalFormat("#.######");
+                    textOne[0] = nf.format(result[0]);
                     if(result[0].isNaN() | result[0].isInfinite()) {
-                        result[0] = 0.0;
+                        Toast.makeText(AdvancedActivity.this, "Error, invalid equation.", Toast.LENGTH_SHORT).show();
+                        textOne[0] = "";
                     }
-                    textOne[0] = String.format(Locale.ENGLISH,"%.6f", result[0]);
                     display.setText(display(textOne[0], sign[0], textTwo[0]));
                 } catch (Exception e) {
                         Toast.makeText(AdvancedActivity.this, "Error while parsing values!", Toast.LENGTH_SHORT).show();
@@ -343,7 +357,8 @@ public class AdvancedActivity extends AppCompatActivity {
                     if(result[0].isNaN() | result[0].isInfinite()) {
                         result[0] = 0.0;
                     }
-                    textOne[0] = String.format(Locale.ENGLISH,"%.6f", result[0]);
+                    NumberFormat nf  = new DecimalFormat("#.######");
+                    textOne[0] = nf.format(result[0]);
                     display.setText(display(textOne[0], sign[0], textTwo[0]));
                 } catch (Exception e) {
                     Toast.makeText(AdvancedActivity.this, "Error while parsing values!", Toast.LENGTH_SHORT).show();
@@ -355,10 +370,12 @@ public class AdvancedActivity extends AppCompatActivity {
                 try {
                     numberOne[0] = Double.valueOf(textOne[0]);
                     result[0] = Math.log10(numberOne[0]);
+                    NumberFormat nf  = new DecimalFormat("#.######");
+                    textOne[0] = nf.format(result[0]);
                     if(result[0].isNaN() | result[0].isInfinite()) {
-                        result[0] = 0.0;
+                        Toast.makeText(AdvancedActivity.this, "Error, invalid equation.", Toast.LENGTH_SHORT).show();
+                        textOne[0] = "";
                     }
-                    textOne[0] = String.format(Locale.ENGLISH,"%.6f", result[0]);
                     display.setText(display(textOne[0], sign[0], textTwo[0]));
                 } catch (Exception e) {
                     Toast.makeText(AdvancedActivity.this, "Error while parsing values!", Toast.LENGTH_SHORT).show();
@@ -370,10 +387,13 @@ public class AdvancedActivity extends AppCompatActivity {
                 try {
                     numberOne[0] = Double.valueOf(textOne[0]);
                     result[0] = Math.log(numberOne[0]);
+                    NumberFormat nf  = new DecimalFormat("#.######");
                     if(result[0].isNaN() | result[0].isInfinite()) {
-                        result[0] = 0.0;
+                        Toast.makeText(AdvancedActivity.this, "Error, invalid equation.", Toast.LENGTH_SHORT).show();
+                        textOne[0] = "";
+                    } else {
+                        textOne[0] = nf.format(result[0]);
                     }
-                    textOne[0] = String.format(Locale.ENGLISH,"%.6f", result[0]);
                     display.setText(display(textOne[0], sign[0], textTwo[0]));
                 } catch (Exception e) {
                     Toast.makeText(AdvancedActivity.this, "Error while parsing values!", Toast.LENGTH_SHORT).show();
@@ -388,7 +408,8 @@ public class AdvancedActivity extends AppCompatActivity {
                     if(result[0].isNaN() | result[0].isInfinite()) {
                         result[0] = 0.0;
                     }
-                    textOne[0] = String.format(Locale.ENGLISH,"%.6f", result[0]);
+                    NumberFormat nf  = new DecimalFormat("#.######");
+                    textOne[0] = nf.format(result[0]);
                     display.setText(display(textOne[0], sign[0], textTwo[0]));
                 } catch (Exception e) {
                     Toast.makeText(AdvancedActivity.this, "Error while parsing values!", Toast.LENGTH_SHORT).show();
@@ -403,7 +424,8 @@ public class AdvancedActivity extends AppCompatActivity {
                     if(result[0].isNaN() | result[0].isInfinite()) {
                         result[0] = 0.0;
                     }
-                    textOne[0] = String.format(Locale.ENGLISH,"%.6f", result[0]);
+                    NumberFormat nf  = new DecimalFormat("#.######");
+                    textOne[0] = nf.format(result[0]);
                     display.setText(display(textOne[0], sign[0], textTwo[0]));
                 } catch (Exception e) {
                     Toast.makeText(AdvancedActivity.this, "Error while parsing values!", Toast.LENGTH_SHORT).show();
@@ -418,7 +440,8 @@ public class AdvancedActivity extends AppCompatActivity {
                     if(result[0].isNaN() | result[0].isInfinite()) {
                         result[0] = 0.0;
                     }
-                    textOne[0] = String.format(Locale.ENGLISH,"%.6f", result[0]);
+                    NumberFormat nf  = new DecimalFormat("#.######");
+                    textOne[0] = nf.format(result[0]);
                     display.setText(display(textOne[0], sign[0], textTwo[0]));
                 } catch (Exception e) {
                     Toast.makeText(AdvancedActivity.this, "Error while parsing values!", Toast.LENGTH_SHORT).show();
